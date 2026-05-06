@@ -43,17 +43,19 @@
         }
 
         html {
-            scroll-behavior: auto;
-            overflow-x: hidden;
+            scroll-behavior: smooth;
+            overflow-x: clip;
             overflow-anchor: none;
-            overscroll-behavior-y: none;
+            overscroll-behavior-x: none;
             background: var(--bg);
         }
 
         body {
             min-height: 100vh;
-            overflow-x: hidden;
-            overscroll-behavior-y: none;
+            overflow-x: clip;
+            overscroll-behavior-x: none;
+            -webkit-overflow-scrolling: touch;
+            touch-action: pan-y;
             color: var(--text);
             background:
                 radial-gradient(circle at 50% 0%, rgba(67, 49, 119, 0.22), transparent 34rem),
@@ -81,6 +83,7 @@
             inset: -20vh -10vw;
             z-index: 0;
             pointer-events: none;
+            contain: layout paint;
             background:
                 radial-gradient(ellipse at 18% 24%, rgba(145, 38, 91, 0.18), transparent 34%),
                 radial-gradient(ellipse at 78% 16%, rgba(74, 44, 133, 0.16), transparent 32%),
@@ -95,6 +98,8 @@
             z-index: 0;
             pointer-events: none;
             overflow: hidden;
+            contain: layout paint;
+            transform: translateZ(0);
             background:
                 radial-gradient(circle at 62% 18%, rgba(130, 108, 187, 0.18), transparent 24rem),
                 radial-gradient(circle at 18% 28%, rgba(108, 32, 87, 0.18), transparent 28rem),
@@ -252,6 +257,7 @@
             z-index: 1;
             pointer-events: none;
             opacity: 0.58;
+            contain: strict;
         }
 
         #music-btn {
@@ -292,6 +298,7 @@
         .hero {
             min-height: 100vh;
             min-height: 100svh;
+            min-height: 100dvh;
             display: grid;
             place-items: center;
             padding: 5rem 1.2rem 4rem;
@@ -692,6 +699,7 @@
         .finale {
             min-height: 100vh;
             min-height: 120svh;
+            min-height: 120dvh;
             display: grid;
             place-items: center;
             text-align: center;
@@ -774,6 +782,19 @@
         }
 
         @media (max-width: 760px) {
+            .aurora,
+            .night-sky {
+                position: absolute;
+            }
+
+            .parallax-layer {
+                transform: none !important;
+            }
+
+            .hero-inner {
+                will-change: auto;
+            }
+
             .memory-grid,
             .memory-grid.three {
                 grid-template-columns: 1fr;
@@ -811,6 +832,12 @@
 
             .hero {
                 padding: 4.5rem 1rem 3.5rem;
+            }
+
+            .finale {
+                min-height: 100vh;
+                min-height: 100svh;
+                min-height: 100dvh;
             }
 
             .hero-inner {
@@ -1086,7 +1113,6 @@
             document.querySelector('.intro').scrollIntoView({ behavior: 'smooth' });
         }
 
-        window.addEventListener('scroll', tryStartMusic, { passive: true, once: true });
         window.addEventListener('pointerdown', tryStartMusic, { once: true });
         window.addEventListener('load', startMusicImmediately, { once: true });
         requestAnimationFrame(startMusicImmediately);
@@ -1106,9 +1132,32 @@
         const heroInner = document.querySelector('.hero-inner');
         const finale = document.querySelector('.finale');
         const finaleTitle = document.querySelector('.finale h2');
+        const compactViewport = window.matchMedia('(max-width: 760px), (pointer: coarse)');
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
         let ticking = false;
 
+        function shouldSimplifyScrollEffects() {
+            return compactViewport.matches || reducedMotion.matches;
+        }
+
+        function resetScrollEffects() {
+            parallaxLayers.forEach((layer) => layer.style.setProperty('--parallax-y', '0px'));
+            if (heroInner) {
+                heroInner.style.transform = '';
+                heroInner.style.opacity = '';
+            }
+            if (finaleTitle) {
+                finaleTitle.style.setProperty('--grand-scale', '1');
+            }
+        }
+
         function updateParallax() {
+            if (shouldSimplifyScrollEffects()) {
+                resetScrollEffects();
+                ticking = false;
+                return;
+            }
+
             const scrollY = window.scrollY || 0;
             parallaxLayers.forEach((layer) => {
                 const depth = Number(layer.dataset.depth || 0);
@@ -1139,6 +1188,8 @@
 
         window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
         window.addEventListener('resize', requestParallaxUpdate);
+        compactViewport.addEventListener('change', requestParallaxUpdate);
+        reducedMotion.addEventListener('change', requestParallaxUpdate);
         requestParallaxUpdate();
 
         const canvas = document.getElementById('sparkle-canvas');
