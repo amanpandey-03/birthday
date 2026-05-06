@@ -528,7 +528,7 @@
         }
 
         .memory-grid.single {
-            max-width: 620px;
+            max-width: 520px;
             grid-template-columns: 1fr;
         }
 
@@ -559,7 +559,7 @@
         .photo-placeholder {
             display: block;
             width: 100%;
-            aspect-ratio: 4 / 3;
+            aspect-ratio: 3 / 4;
             object-fit: cover;
             background:
                 linear-gradient(135deg, rgba(240, 138, 178, 0.14), rgba(48, 24, 88, 0.14)),
@@ -603,8 +603,14 @@
 
         .collage-board {
             position: relative;
-            min-height: clamp(34rem, 72vw, 52rem);
+            min-height: clamp(28rem, 58vw, 42rem);
             margin-top: 2.2rem;
+        }
+
+        .collage-board.single {
+            min-height: 0;
+            display: flex;
+            justify-content: center;
         }
 
         .collage-card {
@@ -619,6 +625,13 @@
             filter: blur(12px);
             transform: translateY(48px) rotate(var(--tilt));
             transition: opacity 1s ease, filter 1.1s ease, transform 1.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .collage-board.single .collage-card {
+            position: relative;
+            inset: auto;
+            width: min(24rem, 100%);
+            --tilt: -2deg;
         }
 
         .collage-card.visible {
@@ -665,9 +678,7 @@
         .collage-card:nth-child(1) { --tilt: -7deg; left: 2%; top: 6%; }
         .collage-card:nth-child(2) { --tilt: 5deg; left: 27%; top: 0; }
         .collage-card:nth-child(3) { --tilt: -3deg; right: 10%; top: 8%; }
-        .collage-card:nth-child(4) { --tilt: 8deg; left: 12%; top: 43%; }
-        .collage-card:nth-child(5) { --tilt: -6deg; left: 43%; top: 34%; }
-        .collage-card:nth-child(6) { --tilt: 4deg; right: 2%; top: 46%; }
+        .collage-card:nth-child(4) { --tilt: 8deg; left: 34%; top: 43%; }
 
         .collage-note {
             max-width: 640px;
@@ -875,8 +886,8 @@
                     </p>
                     <div class="memory-grid single">
                         <figure class="memory">
-                            <img src="photos/before-chapters.jpg" alt="A memory from before our chapters began" onerror="showPlaceholder(this, 'photos/before-chapters.jpg')">
-                            <div class="photo-placeholder">Add photo<br>photos/before-chapters.jpg</div>
+                            <img src="photos/before-chapters.png" alt="A memory from before our chapters began" onerror="showPlaceholder(this, 'photos/before-chapters.png')">
+                            <div class="photo-placeholder">Add photo<br>photos/before-chapters.png</div>
                             <figcaption class="caption">The smile that made everything warmer</figcaption>
                         </figure>
                     </div>
@@ -898,13 +909,13 @@
                     </p>
                     <div class="memory-grid">
                         <figure class="memory">
-                            <img src="photos/cats.jpg" alt="Two cats from our first walk" onerror="showPlaceholder(this, 'photos/cats.jpg')">
-                            <div class="photo-placeholder">Add photo<br>photos/cats.jpg</div>
+                            <img src="photos/cats.png" alt="Two cats from our first walk" onerror="showPlaceholder(this, 'photos/cats.png')">
+                            <div class="photo-placeholder">Add photo<br>photos/cats.png</div>
                             <figcaption class="caption">The cats that made it feel like a sign</figcaption>
                         </figure>
                         <figure class="memory">
-                            <img src="photos/dosa.jpg" alt="The butter dosa from our first date" onerror="showPlaceholder(this, 'photos/dosa.jpg')">
-                            <div class="photo-placeholder">Add photo<br>photos/dosa.jpg</div>
+                            <img src="photos/dosa.png" alt="The butter dosa from our first date" onerror="showPlaceholder(this, 'photos/dosa.png')">
+                            <div class="photo-placeholder">Add photo<br>photos/dosa.png</div>
                             <figcaption class="caption">The famous butter dosa</figcaption>
                         </figure>
                     </div>
@@ -925,13 +936,13 @@
                     </p>
                     <div class="memory-grid">
                         <figure class="memory">
-                            <img src="photos/labcoat.jpg" alt="You in your lab coat after hospital" onerror="showPlaceholder(this, 'photos/labcoat.jpg')">
-                            <div class="photo-placeholder">Add photo<br>photos/labcoat.jpg</div>
+                            <img src="photos/labcoat.png" alt="You in your lab coat after hospital" onerror="showPlaceholder(this, 'photos/labcoat.png')">
+                            <div class="photo-placeholder">Add photo<br>photos/labcoat.png</div>
                             <figcaption class="caption">Picked you up in your lab coat</figcaption>
                         </figure>
                         <figure class="memory">
-                            <img src="photos/hippo-date.jpg" alt="Our zoo date with the hippo" onerror="showPlaceholder(this, 'photos/hippo-date.jpg')">
-                            <div class="photo-placeholder">Add photo<br>photos/hippo-date.jpg</div>
+                            <img src="photos/hippo-date.png" alt="Our zoo date with the hippo" onerror="showPlaceholder(this, 'photos/hippo-date.png')">
+                            <div class="photo-placeholder">Add photo<br>photos/hippo-date.png</div>
                             <figcaption class="caption">Proof that the hippo existed</figcaption>
                         </figure>
                     </div>
@@ -953,18 +964,18 @@
                     </p>
                     <div class="memory-grid three">
                         <figure class="memory">
-                            <img src="photos/rain-walk.jpg" alt="One of our walks in or after the rain" onerror="showPlaceholder(this, 'photos/rain-walk.jpg')">
-                            <div class="photo-placeholder">Add photo<br>photos/rain-walk.jpg</div>
+                            <img src="photos/rain-walk.png" alt="One of our walks in or after the rain" onerror="showPlaceholder(this, 'photos/rain-walk.png')">
+                            <div class="photo-placeholder">Add photo<br>photos/rain-walk.png</div>
                             <figcaption class="caption">Rain, walks, and us</figcaption>
                         </figure>
                         <figure class="memory">
-                            <img src="photos/movie-date.jpg" alt="Our movie date" onerror="showPlaceholder(this, 'photos/movie-date.jpg')">
-                            <div class="photo-placeholder">Add photo<br>photos/movie-date.jpg</div>
+                            <img src="photos/movie-date.png" alt="Our movie date" onerror="showPlaceholder(this, 'photos/movie-date.png')">
+                            <div class="photo-placeholder">Add photo<br>photos/movie-date.png</div>
                             <figcaption class="caption">The movie date</figcaption>
                         </figure>
                         <figure class="memory">
-                            <img src="photos/us.jpg" alt="A memory of us together" onerror="showPlaceholder(this, 'photos/us.jpg')">
-                            <div class="photo-placeholder">Add photo<br>photos/us.jpg</div>
+                            <img src="photos/us.png" alt="A memory of us together" onerror="showPlaceholder(this, 'photos/us.png')">
+                            <div class="photo-placeholder">Add photo<br>photos/us.png</div>
                             <figcaption class="caption">Many more moments to come</figcaption>
                         </figure>
                     </div>
@@ -975,8 +986,8 @@
         <section class="collage-section" id="collage">
             <div class="section-inner">
                 <div class="story-panel">
-                    <span class="section-kicker">Little illustrated memories</span>
-                    <h2>A sky full of <em>storybook frames</em></h2>
+                    <span class="section-kicker">Little real memories</span>
+                    <h2>A sky full of <em>favorite frames</em></h2>
                     <p class="story-text">
                         Here is to every moment I get to share the same frame as you, even if I am mostly there as emotional support, background furniture, and the guy trying very hard not to ruin the lighting.
                     </p>
@@ -985,34 +996,24 @@
                     </p>
                     <div class="collage-board">
                         <figure class="collage-card">
-                            <img src="photos/collage-1.webp" alt="Illustrated memory collage frame one" onerror="showPlaceholder(this, 'photos/collage-1.webp')">
-                            <div class="collage-art">Add illustrated memory<br>photos/collage-1.webp</div>
-                            <figcaption class="caption">A dreamy first frame</figcaption>
+                            <img src="photos/collage.jpg" alt="A cafe selfie of us smiling together" onerror="showPlaceholder(this, 'photos/collage.jpg')">
+                            <div class="collage-art">Add memory<br>photos/collage.jpg</div>
+                            <figcaption class="caption">The smiley cafe frame</figcaption>
                         </figure>
                         <figure class="collage-card">
-                            <img src="photos/collage-2.webp" alt="Illustrated memory collage frame two" onerror="showPlaceholder(this, 'photos/collage-2.webp')">
-                            <div class="collage-art">Add illustrated memory<br>photos/collage-2.webp</div>
-                            <figcaption class="caption">Something soft and cinematic</figcaption>
+                            <img src="photos/collage2.jpg" alt="A close selfie of us sitting together" onerror="showPlaceholder(this, 'photos/collage2.jpg')">
+                            <div class="collage-art">Add memory<br>photos/collage2.jpg</div>
+                            <figcaption class="caption">The close-up chaos we somehow made cute</figcaption>
                         </figure>
                         <figure class="collage-card">
-                            <img src="photos/collage-3.webp" alt="Illustrated memory collage frame three" onerror="showPlaceholder(this, 'photos/collage-3.webp')">
-                            <div class="collage-art">Add illustrated memory<br>photos/collage-3.webp</div>
-                            <figcaption class="caption">A little magic in the dark</figcaption>
+                            <img src="photos/collage3.jpg" alt="A sunlit selfie of us during a ride" onerror="showPlaceholder(this, 'photos/collage3.jpg')">
+                            <div class="collage-art">Add memory<br>photos/collage3.jpg</div>
+                            <figcaption class="caption">The accidental cinematic frame</figcaption>
                         </figure>
                         <figure class="collage-card">
-                            <img src="photos/collage-4.webp" alt="Illustrated memory collage frame four" onerror="showPlaceholder(this, 'photos/collage-4.webp')">
-                            <div class="collage-art">Add illustrated memory<br>photos/collage-4.webp</div>
-                            <figcaption class="caption">One more page of us</figcaption>
-                        </figure>
-                        <figure class="collage-card">
-                            <img src="photos/collage-5.webp" alt="Illustrated memory collage frame five" onerror="showPlaceholder(this, 'photos/collage-5.webp')">
-                            <div class="collage-art">Add illustrated memory<br>photos/collage-5.webp</div>
-                            <figcaption class="caption">A memory glowing gently</figcaption>
-                        </figure>
-                        <figure class="collage-card">
-                            <img src="photos/collage-6.webp" alt="Illustrated memory collage frame six" onerror="showPlaceholder(this, 'photos/collage-6.webp')">
-                            <div class="collage-art">Add illustrated memory<br>photos/collage-6.webp</div>
-                            <figcaption class="caption">The next chapter waiting</figcaption>
+                            <img src="photos/collage4.jpg" alt="A mirror selfie with a kiss on the cheek" onerror="showPlaceholder(this, 'photos/collage4.jpg')">
+                            <div class="collage-art">Add memory<br>photos/collage4.jpg</div>
+                            <figcaption class="caption">The favorite mirror frame</figcaption>
                         </figure>
                     </div>
                 </div>
